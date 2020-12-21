@@ -59,5 +59,5 @@ print(history.history)
 #print(test_acc)
 
 #tf.keras.utils.plot_model(model, to_file='SEResNet50_architecture.png', show_shapes=False, show_layer_names=False)
-#plot.plot_history(history, 'results.png')
+plot.plot_history(history, 'results.png')
 
