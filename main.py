@@ -21,7 +21,7 @@ train_ds = tf.keras.preprocessing.image_dataset_from_directory(
 
 val_ds = tf.keras.preprocessing.image_dataset_from_directory(
       "/net/people/plgkolarzl/test",
-      validation_split=0.1,
+      validation_split=0.9,
       subset="validation",
       seed=123,
       image_size=(target_size, target_size),
@@ -37,7 +37,7 @@ val_ds = tf.keras.preprocessing.image_dataset_from_directory(
 #                                             batch_size=batch_size,
 #                                             target_size=(target_size, target_size))
 
-input_shape = (target_size, target_size, 1)
+input_shape = (target_size, target_size, 3)
 
 strategy = tf.distribute.MirroredStrategy()
 print('Number of GPUs: {}'.format(strategy.num_replicas_in_sync))
