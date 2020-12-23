@@ -144,3 +144,12 @@ cython_debug/
 *.jpg
 *.jpeg
 
+.DS_Store
+.idea/.gitignore
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/other.xml
+.idea/pracainzynierska.iml
+.idea/vcs.xml
+oldies/
