@@ -11,35 +11,35 @@ classes = 4
 target_size = 496
 
 
-train_ds = tf.keras.preprocessing.image_dataset_from_directory(
-    "/net/people/plgkolarzl/dataset_clear",
-    validation_split=0.1,
-    color_mode='grayscale',
-    label_mode='int',
-    subset="training",
-    seed=123,
-    image_size=(target_size, target_size),
-    batch_size=batch_size)
+# train_ds = tf.keras.preprocessing.image_dataset_from_directory(
+#     "/net/people/plgkolarzl/dataset_clear",
+#     validation_split=0.1,
+#     color_mode='grayscale',
+#     label_mode='int',
+#     subset="training",
+#     seed=123,
+#     image_size=(target_size, target_size),
+#     batch_size=batch_size)
+#
+# val_ds = tf.keras.preprocessing.image_dataset_from_directory(
+#       "/net/people/plgkolarzl/test",
+#       validation_split=0.9,
+#       color_mode='grayscale',
+#       label_mode='int',
+#       subset="validation",
+#       seed=123,
+#       image_size=(target_size, target_size),
+#       batch_size=batch_size)
 
-val_ds = tf.keras.preprocessing.image_dataset_from_directory(
-      "/net/people/plgkolarzl/test",
-      validation_split=0.9,
-      color_mode='grayscale',
-      label_mode='int',
-      subset="validation",
-      seed=123,
-      image_size=(target_size, target_size),
-      batch_size=batch_size)
-
-# data_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
-# train_ds = data_generator.flow_from_directory('/net/people/plgkolarzl/dataset',
-#                                               class_mode='categorical',
-#                                               batch_size=batch_size,
-#                                               target_size=(target_size, target_size))
-# val_ds = data_generator.flow_from_directory('/net/people/plgkolarzl/test',
-#                                             class_mode='categorical',
-#                                             batch_size=batch_size,
-#                                             target_size=(target_size, target_size))
+data_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
+train_ds = data_generator.flow_from_directory('/net/people/plgkolarzl/dataset_clear',
+                                              class_mode='categorical',
+                                              batch_size=batch_size,
+                                              target_size=(target_size, target_size, 1))
+val_ds = data_generator.flow_from_directory('/net/people/plgkolarzl/test',
+                                            class_mode='categorical',
+                                            batch_size=batch_size,
+                                            target_size=(target_size, target_size, 1))
 
 input_shape = (target_size, target_size, 1)
 
