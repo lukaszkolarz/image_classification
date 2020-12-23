@@ -35,11 +35,13 @@ data_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
 train_ds = data_generator.flow_from_directory('/net/people/plgkolarzl/dataset_clear',
                                               class_mode='categorical',
                                               batch_size=batch_size,
-                                              target_size=(target_size, target_size, 1))
+                                              color_mode='grayscale',
+                                              target_size=(target_size, target_size))
 val_ds = data_generator.flow_from_directory('/net/people/plgkolarzl/test',
                                             class_mode='categorical',
                                             batch_size=batch_size,
-                                            target_size=(target_size, target_size, 1))
+                                            color_mode='grayscale',
+                                            target_size=(target_size, target_size))
 
 input_shape = (target_size, target_size, 1)
 
