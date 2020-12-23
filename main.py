@@ -32,11 +32,7 @@ with strategy.scope():
 
 model.summary()
 #history = model.fit(train_ds, epochs=epochs, batch_size=batch_size, validation_data=val_ds)
-history = model.fit(train_ds,
-                    steps_per_epoch=len(train_ds)//batch_size,
-                    validation_steps=len(val_ds)//batch_size,
-                    epochs=epochs,
-                    validation_data=val_ds)
+history = model.fit(train_ds, steps_per_epoch=700, epochs=epochs, validation_data=val_ds)
 print(history.history)
 
 #test_loss, test_acc = model.evaluate(x_test, y_test)
