@@ -1,6 +1,4 @@
-import ImageLoader
-from matplotlib import pyplot
-from PIL import Image
+from DataLoader import ImageLoader
 
 
 def test_ImageLoader():

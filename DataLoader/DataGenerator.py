@@ -1,0 +1,24 @@
+import tensorflow as tf
+
+
+def import_greyscale(target_size, batch_size, source_train, source_val):
+    train_data_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255,
+                                                                           zoom_range=0.2,
+                                                                           rotation_range=15,
+                                                                           vertical_flip=True)
+    train_ds = train_data_generator.flow_from_directory(source_train,
+                                                        class_mode='sparse',
+                                                        batch_size=batch_size,
+                                                        color_mode='grayscale',
+                                                        target_size=(target_size, target_size))
+
+    test_data_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255)
+    val_ds = test_data_generator.flow_from_directory(source_val,
+                                                     class_mode='sparse',
+                                                     batch_size=batch_size,
+                                                     color_mode='grayscale',
+                                                     target_size=(target_size, target_size))
+
+    input_shape = (target_size, target_size, 1)
+
+    return train_ds, val_ds, input_shape
