@@ -57,8 +57,8 @@ with strategy.scope():
                   metrics=['acc'])
 
 model.summary()
-history = model.fit(train_ds, epochs=epochs, batch_size=batch_size, validation_data=val_ds)
-#history = model.fit(train_ds, steps_per_epoch=10, validation_steps=1, epochs=epochs, validation_data=val_ds)
+#history = model.fit(train_ds, epochs=epochs, batch_size=batch_size, validation_data=val_ds)
+history = model.fit(train_ds, steps_per_epoch=120, validation_steps=2, epochs=epochs, validation_data=val_ds)
 print(history.history)
 
 #test_loss, test_acc = model.evaluate(x_test, y_test)

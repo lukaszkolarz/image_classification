@@ -42,7 +42,7 @@ def SEResNet50(input_shape, classes):
     x = tf.keras.layers.Dense(units=classes,
                               activation='softmax',
                               kernel_initializer=tf.initializers.glorot_uniform(seed=0))(x)
-    return tf.keras.models.Model(inputs=input_shape, outputs=x, name='ResNet50')
+    return tf.keras.models.Model(inputs=input_shape, outputs=x, name='SEResNet50')
 
 
 def identity_block(x, filters, kernel_size, reduction_ratio=16):
