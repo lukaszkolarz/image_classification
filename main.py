@@ -7,14 +7,14 @@ from DataLoader import DataGenerator
 
 
 batch_size = 64
-epochs = 30
+epochs = 35
 learning_rate = 1e-3
 classes = 4
 target_size = 496
 
 train_ds, val_ds, input_shape = DataGenerator.import_greyscale(target_size=target_size,
                                                                batch_size=batch_size,
-                                                               source_train='/net/people/plgkolarzl/dataset_clear',
+                                                               source_train='/net/people/plgkolarzl/dataset',
                                                                source_val='/net/people/plgkolarzl/test')
 
 strategy = tf.distribute.MirroredStrategy()
@@ -32,7 +32,7 @@ with strategy.scope():
 
 model.summary()
 #history = model.fit(train_ds, epochs=epochs, batch_size=batch_size, validation_data=val_ds)
-history = model.fit(train_ds, steps_per_epoch=500, epochs=epochs, validation_data=val_ds, validation_steps=10)
+history = model.fit(train_ds, steps_per_epoch=230, epochs=epochs, validation_data=val_ds, validation_steps=10)
 print(history.history)
 
 #test_loss, test_acc = model.evaluate(x_test, y_test)
