@@ -31,7 +31,7 @@ with strategy.scope():
     #model = SEResNet50.SEResNet50(input_shape, classes)
 
     model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
-                  loss='sparse_categorical_crossentropy',
+                  loss=tf.reduce_mean(tf.keras.losses.SparseCategoricalCrossentropy()),
                   metrics=['acc'])
 
 model.summary()
