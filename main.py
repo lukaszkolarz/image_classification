@@ -30,7 +30,7 @@ with strategy.scope():
     #model = ResNet50.ResNet50(input_shape, classes)
     #model = SEResNet50.SEResNet50(input_shape, classes)
 
-    model.compile(optimizer=lr_schedule,
+    model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
                   loss='sparse_categorical_crossentropy',
                   metrics=['acc'])
 
