@@ -1,6 +1,7 @@
 import ResNet34
 import ResNet50
 import SEResNet50
+import TestNet
 import tensorflow as tf
 import plot_result as plot
 from DataLoader import DataGenerator
@@ -27,8 +28,9 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_ra
 
 with strategy.scope():
     #model = ResNet34.ResNet34(input_shape, classes)
-    model = ResNet50.ResNet50(input_shape, classes)
+    #model = ResNet50.ResNet50(input_shape, classes)
     #model = SEResNet50.SEResNet50(input_shape, classes)
+    model = TestNet.testNet(input_shape, classes)
 
     model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
                   loss=tf.keras.losses.SparseCategoricalCrossentropy(),
