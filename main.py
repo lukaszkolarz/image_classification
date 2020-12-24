@@ -7,7 +7,7 @@ from DataLoader import DataGenerator
 
 
 batch_size = 64
-epochs = 35
+epochs = 10
 learning_rate = 1e-3
 classes = 4
 target_size = 496
@@ -20,13 +20,17 @@ train_ds, val_ds, input_shape = DataGenerator.import_greyscale(target_size=targe
 strategy = tf.distribute.MirroredStrategy()
 print('Number of GPUs: {}'.format(strategy.num_replicas_in_sync))
 
+lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_rate=learning_rate,
+                                                             decay_steps=10000,
+                                                             decay_rate=0.96,
+                                                             staircase=True)
 
 with strategy.scope():
     model = ResNet34.ResNet34(input_shape, classes)
     #model = ResNet50.ResNet50(input_shape, classes)
     #model = SEResNet50.SEResNet50(input_shape, classes)
 
-    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate),
+    model.compile(optimizer=lr_schedule,
                   loss='sparse_categorical_crossentropy',
                   metrics=['acc'])
 
