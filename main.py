@@ -15,8 +15,8 @@ target_size = 300
 
 train_ds, val_ds, input_shape = DataGenerator.import_greyscale(target_size=target_size,
                                                                batch_size=batch_size,
-                                                               source_train='/net/people/plgkolarzl/dataset',
-                                                               source_val='/net/people/plgkolarzl/test')
+                                                               source_train='/net/archive/groups/plggmlkt/OCT2017/train',
+                                                               source_val='/net/archive/groups/plggmlkt/OCT2017/test')
 
 strategy = tf.distribute.MirroredStrategy()
 print('Number of GPUs: {}'.format(strategy.num_replicas_in_sync))
@@ -38,7 +38,7 @@ with strategy.scope():
 
 model.summary()
 #history = model.fit(train_ds, epochs=epochs, batch_size=batch_size, validation_data=val_ds)
-history = model.fit(train_ds, steps_per_epoch=400, epochs=epochs, validation_data=val_ds, validation_steps=10)
+history = model.fit(train_ds, steps_per_epoch=1000, epochs=epochs, validation_data=val_ds, validation_steps=10)
 print(history.history)
 
 #test_loss, test_acc = model.evaluate(x_test, y_test)
