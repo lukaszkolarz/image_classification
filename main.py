@@ -11,7 +11,7 @@ batch_size = 64
 epochs = 10
 learning_rate = 1e-3
 classes = 4
-target_size = 300
+target_size = 496
 
 train_ds, val_ds, input_shape = DataGenerator.import_greyscale(target_size=target_size,
                                                                batch_size=batch_size,
@@ -27,18 +27,18 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_ra
                                                              staircase=True)
 
 with strategy.scope():
-    #model = ResNet34.ResNet34(input_shape, classes)
+    model = ResNet34.ResNet34(input_shape, classes)
     #model = ResNet50.ResNet50(input_shape, classes)
     #model = SEResNet50.SEResNet50(input_shape, classes)
-    model = TestNet.testNet(input_shape, classes)
+    #model = TestNet.testNet(input_shape, classes)
 
     model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
-                  loss=tf.keras.losses.SparseCategoricalCrossentropy(),
+                  loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
                   metrics=['acc'])
 
 model.summary()
 #history = model.fit(train_ds, epochs=epochs, batch_size=batch_size, validation_data=val_ds)
-history = model.fit(train_ds, steps_per_epoch=230, epochs=epochs, validation_data=val_ds, validation_steps=10)
+history = model.fit(train_ds, steps_per_epoch=230, epochs=epochs, validation_split=0.1, validation_steps=10)
 print(history.history)
 
 #test_loss, test_acc = model.evaluate(x_test, y_test)
