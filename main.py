@@ -33,7 +33,7 @@ with strategy.scope():
     #model = TestNet.testNet(input_shape, classes)
 
     model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
-                  loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                  loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='sum'),
                   metrics=['acc'])
 
 model.summary()
