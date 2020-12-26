@@ -39,7 +39,8 @@ def ResNet34(input_shape, classes):
     x = tf.keras.layers.AveragePooling2D(pool_size=(2, 2), padding='same')(x)
     x = tf.keras.layers.Flatten()(x)
     x = tf.keras.layers.Dense(classes, activation='softmax',
-                              kernel_initializer=tf.keras.initializers.glorot_uniform(seed=0))(x)
+                              kernel_initializer=tf.keras.initializers.glorot_uniform(seed=0),
+                              kernel_regularizer=tf.keras.regularizers.l2(l2=0.001))(x)
     ResNet32Model = tf.keras.models.Model(inputs=input_shape, outputs=x, name='ResNet34')
 
     return ResNet32Model
