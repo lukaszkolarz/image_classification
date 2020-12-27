@@ -30,7 +30,7 @@ with strategy.scope():
     #model = TestNet.testNet(input_shape, classes)
 
     inputs = tf.keras.layers.Input(input_shape)
-    model = tf.keras.applications.DenseNet121(include_top=False, classes=4, weights=None, input_tensor=inputs)
+    model = tf.keras.applications.DenseNet121(include_top=False, classes=4, weights='imagenet', input_tensor=inputs)
     x = tf.keras.layers.GlobalAveragePooling2D()(model.output)
     x = tf.keras.layers.Dense(classes, activation='softmax')(x)
     model = tf.keras.models.Model(inputs=inputs, outputs=x)
