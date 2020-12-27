@@ -8,7 +8,7 @@ batch_size = 8
 epochs = 2
 learning_rate = 1e-3
 classes = 4
-target_size = 500
+target_size = 800
 
 train_ds, val_ds, input_shape = DataGenerator.import_greyscale(target_size=target_size,
                                                                batch_size=batch_size,
