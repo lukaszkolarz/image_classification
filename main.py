@@ -4,7 +4,7 @@ import plot_result as plot
 from DataLoader import DataGenerator
 
 
-batch_size = 128
+batch_size = 64
 epochs = 2
 learning_rate = 1e-3
 classes = 4
