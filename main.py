@@ -6,9 +6,9 @@ from DataLoader import DataGenerator
 
 batch_size = 128
 epochs = 2
-learning_rate = 1e-2
+learning_rate = 1e-3
 classes = 4
-target_size = 300
+target_size = 600
 
 train_ds, val_ds, input_shape = DataGenerator.import_greyscale(target_size=target_size,
                                                                batch_size=batch_size,
@@ -24,8 +24,8 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_ra
                                                              staircase=True)
 
 with strategy.scope():
-    #model = ResNet34.ResNet34(input_shape, classes)
-    model = ResNet50.ResNet50(input_shape, classes)
+    model = ResNet34.ResNet34(input_shape, classes)
+    #model = ResNet50.ResNet50(input_shape, classes)
     #model = SEResNet50.SEResNet50(input_shape, classes)
     #model = TestNet.testNet(input_shape, classes)
 
