@@ -6,7 +6,7 @@ from DataLoader import DataGenerator
 
 batch_size = 32
 epochs = 2
-learning_rate = 1e-3
+learning_rate = 1e-4
 classes = 4
 target_size = 700
 
@@ -29,7 +29,7 @@ with strategy.scope():
     #model = SEResNet50.SEResNet50(input_shape, classes)
     #model = TestNet.testNet(input_shape, classes)
 
-    model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate),
                   loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
                   metrics=['acc'])
 
