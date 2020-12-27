@@ -3,9 +3,9 @@ import tensorflow as tf
 
 def import_greyscale(target_size, batch_size, source_train, source_val):
     train_data_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255,
-                                                                           zoom_range=0.2,
-                                                                           rotation_range=15,
-                                                                           vertical_flip=True)
+                                                                           zoom_range=0.0,
+                                                                           rotation_range=0,
+                                                                           vertical_flip=False)
     train_ds = train_data_generator.flow_from_directory(source_train,
                                                         class_mode='categorical',
                                                         batch_size=batch_size,
