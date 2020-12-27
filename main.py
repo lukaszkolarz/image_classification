@@ -1,14 +1,11 @@
-import ResNet34
-import ResNet50
-import SEResNet50
-import TestNet
+from Architectures import ResNet34, ResNet50, SEResNet50, TestNet
 import tensorflow as tf
 import plot_result as plot
 from DataLoader import DataGenerator
 
 
-batch_size = 64
-epochs = 30
+batch_size = 128
+epochs = 10
 learning_rate = 1e-3
 classes = 4
 target_size = 300
@@ -36,9 +33,9 @@ with strategy.scope():
                   loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
                   metrics=['acc'])
 
-model.summary()
+#model.summary()
 #history = model.fit(train_ds, epochs=epochs, batch_size=batch_size, validation_data=val_ds)
-history = model.fit(train_ds, steps_per_epoch=1000, epochs=epochs, validation_data=val_ds, validation_steps=10)
+history = model.fit(train_ds, steps_per_epoch=600, epochs=epochs, validation_data=val_ds, validation_steps=12)
 print(history.history)
 
 #test_loss, test_acc = model.evaluate(x_test, y_test)
