@@ -10,7 +10,7 @@ def import_greyscale(target_size, batch_size, source_train, source_val):
                                                         class_mode='categorical',
                                                         batch_size=batch_size,
                                                         color_mode='grayscale',
-                                                        target_size=(1536, 496))
+                                                        target_size=(1000, 1000))
 
     test_data_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
     val_ds = test_data_generator.flow_from_directory(source_val,
