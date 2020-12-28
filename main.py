@@ -28,12 +28,7 @@ with strategy.scope():
     #model = ResNet50.ResNet50(input_shape, classes)
     #model = SEResNet50.SEResNet50(input_shape, classes)
     #model = TestNet.testNet(input_shape, classes)
-
-    inputs = tf.keras.layers.Input(input_shape)
-    model = tf.keras.applications.DenseNet121(include_top=False, classes=4, weights='imagenet', input_tensor=inputs)
-    x = tf.keras.layers.GlobalAveragePooling2D()(model.output)
-    x = tf.keras.layers.Dense(classes, activation='softmax')(x)
-    model = tf.keras.models.Model(inputs=inputs, outputs=x)
+    model = tf.keras.applications.DenseNet121(classes=4, weights=None)
 
     model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
                   loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
