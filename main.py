@@ -12,8 +12,8 @@ target_size = 800
 
 train_ds, val_ds, input_shape = DataGenerator.import_greyscale(target_size=target_size,
                                                                batch_size=batch_size,
-                                                               source_train='/net/archive/groups/plggmlkt/OCT2017/train',
-                                                               source_val='/net/archive/groups/plggmlkt/OCT2017/test')
+                                                               source_train='/net/people/plgkolarzl/dataset',
+                                                               source_val='/net/people/plgkolarzl/test')
 
 strategy = tf.distribute.MirroredStrategy()
 print('Number of GPUs: {}'.format(strategy.num_replicas_in_sync))
