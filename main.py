@@ -1,11 +1,11 @@
-from Architectures import ResNet34, ResNet50, SEResNet50, TestNet
+from Architectures import ResNet34, ResNet50, SEResNet50, TestNet, DenseNet121
 import tensorflow as tf
 import plot_result as plot
 from DataLoader import DataGenerator
 
 
 batch_size = 8
-epochs = 2
+epochs = 20
 learning_rate = 1e-3
 classes = 4
 target_size = 800
@@ -28,15 +28,16 @@ with strategy.scope():
     #model = ResNet50.ResNet50(input_shape, classes)
     #model = SEResNet50.SEResNet50(input_shape, classes)
     #model = TestNet.testNet(input_shape, classes)
-    model = tf.keras.applications.DenseNet121(classes=4, weights=None)
+    #model = tf.keras.applications.DenseNet121(classes=4, weights=None)
+    model = DenseNet121.DenseNet121(input_shape, classes)
 
     model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
                   loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
                   metrics=['acc'])
 
-#model.summary()
+model.summary()
 #history = model.fit(train_ds, epochs=epochs, batch_size=batch_size, validation_data=val_ds)
-history = model.fit(train_ds, steps_per_epoch=600, epochs=epochs, validation_data=val_ds, validation_steps=12)
+history = model.fit(train_ds, steps_per_epoch=1200, epochs=epochs, validation_data=val_ds, validation_steps=50)
 #print(history.history)
 
 #test_loss, test_acc = model.evaluate(x_test, y_test)
