@@ -5,7 +5,7 @@ from DataLoader import DataGenerator
 
 
 batch_size = 8
-epochs = 20
+epochs = 35
 learning_rate = 1e-3
 classes = 4
 target_size = 800
@@ -37,7 +37,7 @@ with strategy.scope():
 
 model.summary()
 #history = model.fit(train_ds, epochs=epochs, batch_size=batch_size, validation_data=val_ds)
-history = model.fit(train_ds, steps_per_epoch=1200, epochs=epochs, validation_data=val_ds, validation_steps=50)
+history = model.fit(train_ds, steps_per_epoch=3500, epochs=epochs, validation_data=val_ds, validation_steps=100)
 #print(history.history)
 
 #test_loss, test_acc = model.evaluate(x_test, y_test)
