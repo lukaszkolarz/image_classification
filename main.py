@@ -11,7 +11,7 @@ target_size = 800
 
 train_ds, val_ds, test_ds, input_shape = DataGenerator.import_greyscale(target_size=target_size,
                                                                         batch_size=batch_size,
-                                                                        source_train='/net/archive/groups/plggmlkt/dataset/train',
+                                                                        source_train='/net/archive/groups/plggmlkt/dataset/train_aug',
                                                                         source_val='/net/archive/groups/plggmlkt/dataset/validation',
                                                                         source_test='/net/archive/groups/plggmlkt/dataset/test')
 
