@@ -1,7 +1,7 @@
 import Augmentor
 
 
-def prepare_data(source, output, size):
+def prepare_data(source, output):
     aug = Augmentor.Pipeline(source_directory=source, output_directory=output)
     aug.flip_top_bottom(0.3)
     aug.flip_left_right(0.25)
@@ -11,10 +11,6 @@ def prepare_data(source, output, size):
 
 
 if __name__ == '__main__':
-    prepare_data('/Users/lukaszkolarz/Desktop/AGH/praca inżynierska/dataset.nosync/train',
-                 '/Users/lukaszkolarz/Desktop/AGH/praca inżynierska/dataset.nosync/train_augmeted')
+    prepare_data('/net/archive/groups/plggmlkt/dataset/train',
+                 '/net/archive/groups/plggmlkt/dataset/train_augmeted')
 
-    resize = Augmentor.Pipeline('/Users/lukaszkolarz/Desktop/AGH/praca inżynierska/dataset.nosync/train',
-                                '/Users/lukaszkolarz/Desktop/AGH/praca inżynierska/dataset.nosync/train_resized')
-    resize.resize(probability=1.0, width=496, height=496)
-    resize.process()
