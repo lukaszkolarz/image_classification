@@ -4,10 +4,10 @@ import plot_result as plot
 from DataLoader import DataGenerator
 
 batch_size = 8
-epochs = 32
+epochs = 8
 learning_rate = 1e-3
 classes = 4
-target_size = 800
+target_size = 350
 
 train_ds, val_ds, test_ds, input_shape = DataGenerator.import_greyscale(target_size=target_size,
                                                                         batch_size=batch_size,
@@ -26,10 +26,9 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_ra
 with strategy.scope():
     # model = ResNet34.ResNet34(input_shape, classes)
     # model = ResNet50.ResNet50(input_shape, classes)
-    # model = SEResNet50.SEResNet50(input_shape, classes)
+    model = SEResNet50.SEResNet50(input_shape, classes)
     # model = TestNet.testNet(input_shape, classes)
-    # model = tf.keras.applications.DenseNet121(classes=4, weights=None)
-    model = DenseNet121.DenseNet121(input_shape, classes)
+    # model = DenseNet121.DenseNet121(input_shape, classes)
 
     model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
                   loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
