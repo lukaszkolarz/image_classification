@@ -38,7 +38,7 @@ def DenseNet121(input_shape, classes, init_filters=64, block_config=None, growth
     return DenseNet121Model
 
 
-def dense_block(x, growth=32, multi_factor=4):
+def dense_block(x, growth=16, multi_factor=4):
 
     shortcut = x
 

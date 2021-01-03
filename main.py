@@ -4,10 +4,10 @@ import plot_result as plot
 from DataLoader import DataGenerator
 
 batch_size = 8
-epochs = 8
+epochs = 40
 learning_rate = 1e-3
 classes = 4
-target_size = 500
+target_size = 800
 
 train_ds, val_ds, test_ds, input_shape = DataGenerator.import_greyscale(target_size=target_size,
                                                                         batch_size=batch_size,
@@ -24,11 +24,11 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_ra
                                                              staircase=True)
 
 with strategy.scope():
-    model = ResNet34.ResNet34(input_shape, classes)
+    # model = ResNet34.ResNet34(input_shape, classes)
     # model = ResNet50.ResNet50(input_shape, classes)
     # model = SEResNet50.SEResNet50(input_shape, classes)
     # model = TestNet.testNet(input_shape, classes)
-    # model = DenseNet121.DenseNet121(input_shape, classes)
+    model = DenseNet121.DenseNet121(input_shape, classes)
 
     model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
                   loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
@@ -36,7 +36,7 @@ with strategy.scope():
 
 model.summary()
 # history = model.fit(train_ds, epochs=epochs, batch_size=batch_size, validation_data=val_ds)
-history = model.fit(train_ds, steps_per_epoch=3500, epochs=epochs, validation_data=val_ds, validation_steps=100)
+history = model.fit(train_ds, steps_per_epoch=3500, epochs=epochs, validation_data=val_ds, validation_steps=110)
 # print(history.history)
 
 test_loss, test_acc = model.evaluate(test_ds, steps=14)
