@@ -10,7 +10,7 @@ def plot_history(history, filename):
     plt.xlabel('Epoch')
     plt.ylabel('Accuracy')
     plt.ylim([0, 1])
-    plt.legend(loc='upper left')
+    plt.legend(loc='lower right')
 
     # loss
     plt.subplot(1, 2, 2)
