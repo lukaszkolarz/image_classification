@@ -24,11 +24,11 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_ra
                                                              staircase=True)
 
 with strategy.scope():
-    # model = ResNet34.ResNet34(input_shape, classes)
+    model = ResNet34.ResNet34(input_shape, classes)
     # model = ResNet50.ResNet50(input_shape, classes)
     # model = SEResNet50.SEResNet50(input_shape, classes)
     # model = TestNet.testNet(input_shape, classes)
-    model = DenseNet121.DenseNet121(input_shape, classes)
+    #model = DenseNet121.DenseNet121(input_shape, classes)
 
     model.compile(optimizer=tf.keras.optimizers.Adam(lr_schedule),
                   loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
