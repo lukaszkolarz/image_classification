@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-def DenseNet121(input_shape, classes, init_filters=64, block_config=None, growth=4):
+def DenseNet121(input_shape, classes, init_filters=64, block_config=None, growth=24):
 
     if block_config is None:
         block_config = [6, 12, 24, 16]
