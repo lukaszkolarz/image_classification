@@ -44,4 +44,4 @@ print('Test accuracy: ' + str(test_acc))
 print('Test loss: ' + str(test_loss))
 
 # tf.keras.utils.plot_model(model, to_file='SEResNet50_architecture.png', show_shapes=False, show_layer_names=False)
-plot.plot_history(history, 'DenseNet121_g4_46e.png')
+plot.plot_history(history, 'DenseNet121_g24_32e.png')
